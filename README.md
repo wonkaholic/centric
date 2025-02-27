@@ -16,7 +16,7 @@
 
 ### 2. **Find Matching Sections and Copy Section Item Values**
 - **Scenario**: The product team decided to update the forumulation (`section`) for the serum, in this case, they can copy the existing serum to the new one, and update the ingredients or parts (`section item`) they wish to change.
-- **Function Description**: To copy values from items in the "From" section to matching items in the "To" section based on their IDs, ensuring that only relevant changes are made.
+- **Function Description**: To copy the ingredients or parts of previous serum's BOM to the new serum's BOM.
 - **Analysis**: This function copies values from items in the "From" section to matching items in the "To" section of a BOM, based on their IDs, and returns a list of the copy operations.
 
 ### 3. **Traverse and Find Matching Nodes**
