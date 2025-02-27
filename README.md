@@ -19,7 +19,7 @@
 ### 2. **Find Matching Sections and Copy Section Item Values**
 - **Node**: Section Items in the BOM.
 - **Container**: Section IDs.
-- **Function Description**: To ensure that values from the "From" section are copied to matching items in the "To" section. This ensures consistency across the BOM sections, especially when updates need to be made.
+- **Function Description**: To ensure that values from the "From" section are copied to matching items in the "To" section.
 - **Scenario**: In the context of BOM in manufacturing, a product consists of several parts, and each part has specific properties. We can update an old BOM section with values from a new BOM section to ensure consistency across sections.
 
 ### 3. **Traverse and Find Matching Nodes**
