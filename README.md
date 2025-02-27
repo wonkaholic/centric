@@ -16,12 +16,12 @@
 
 ### 2. **Find Matching Sections and Copy Section Item Values**
 - **Scenario**: The product team decided to update the forumulation (`section`) for the serum, in this case, they can copy the existing serum to the new one, and update the ingredients or parts (`section item`) they wish to change.
-- **Function Description**: To copy the ingredients or parts of previous serum's BOM to the new serum's BOM.
+- **Function Description**: To copy the formulation from existing serum's BOM to the new serum's BOM.
 - **Analysis**: This function copies values from items in the "From" section to matching items in the "To" section of a BOM, based on their IDs, and returns a list of the copy operations.
 
 ### 3. **Traverse and Find Matching Nodes**
 - **Scenario**: The operation team would like to know whether the stock level (`node: qty`) of their products (`node`) or its parts (`node: children`) fall in a specific range, thus they can plan the production.
-- **Function Description**: To identify and return products or parts whose quantity falls within a given range.
+- **Function Description**: To collect the products or parts whose quantity falls within a given range.
 - **Analysis**: This function recursively traverses a tree-like structure of nodes and collects those whose quantity falls within a specified minimum and maximum range, returning the matching nodes.
 
 ---
