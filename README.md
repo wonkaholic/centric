@@ -10,24 +10,21 @@ This repository contains solutions for a technical assessment conducted for **Ce
 ## User Stories
 
 ### 1. **Find Expired Nodes**
-#### User Story:
-- **Node**: Facial cream.
+- **Node**: Facial serum.
 - **Container**: Season.
 - **Function Description**: To identify and remove outdated facial creams that are no longer on trend.
-- **Scenario**: Given a list of facial creams with their expiration dates, the system identifies expired creams. If a **season** is specified, only expired creams from that season are returned; otherwise, all expired creams are returned.
+- **Scenario**: Given a list of facial serums with their expiration dates, the system identifies expired serums. If a **season** is specified, only expired serums from that season are returned; otherwise, all expired serums are returned.
 
 ### 2. **Find Matching Sections and Copy Section Item Values**
-#### User Story:
-- **Node**: Section Items in the Bill of Materials (BOM).
+- **Node**: Section Items in the BOM.
 - **Container**: Section IDs.
 - **Function Description**: To ensure that values from the "From" section are copied to matching items in the "To" section. This ensures consistency across the BOM sections, especially when updates need to be made.
 - **Scenario**: In the context of BOM in manufacturing, a product consists of several parts, and each part has specific properties. We can update an old BOM section with values from a new BOM section to ensure consistency across sections.
 
 ### 3. **Traverse and Find Matching Nodes**
-#### User Story:
 - **Node**: Product Nodes with quantities.
 - **Container**: Child nodes (subcategories or parts).
-- **Function Description**: To identify nodes (products or parts) whose quantities fall within a specific range. 
+- **Function Description**: To identify products or parts whose quantities fall within a specific range. 
 - **Scenario**: In a warehouse management system, each product might have a quantity (stock level) associated with it. We can identify products that have stock quantities between a certain range, for instance, products with stock levels between 10 and 100 units.
 
 ---
@@ -48,11 +45,6 @@ This repository contains solutions for a technical assessment conducted for **Ce
 - **Decision**: Input validation is implemented to ensure that critical parameters like `expiration` and section IDs are valid.
 - **Example**: In `find_expired_nodes.ts`, the expiration date is validated to ensure it’s a `Date` object.
 - **Reasoning**: Input validation prevents runtime errors and ensures the system behaves as expected, even in controlled environments.
-
-### 4. **Recursive Traversal**
-- **Decision**: Recursive functions are used for traversing tree-like structures (e.g., product nodes and their children).
-- **Example**: The `traverse` function in `traverse_and_find_matching_nodes.ts` uses recursion to visit every node and its children.
-- **Reasoning**: Recursion naturally handles hierarchical data, making it easy to traverse through deeply nested structures without manually managing traversal stacks.
 
 ---
 
