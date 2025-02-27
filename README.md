@@ -10,18 +10,18 @@
 ## User Stories
 
 ### 1. **Find Expired Nodes**
+- **Scenario**: Given a list of facial serums (node) with their expiration dates, the system identifies expired serums. If a season (container) is specified, only expired serums from that season are returned; otherwise, all expired serums are returned.
 - **Function Description**: To identify and remove outdated facial serums that are no longer on trend.
-- **Scenario**: Given a list of facial serums with their expiration dates, the system identifies expired serums. If a **season** is specified, only expired serums from that season are returned; otherwise, all expired serums are returned.
 - **Analysis**: This function filters a collection of nodes to return those whose expiration date has passed, optionally filtering by a specified container.
 
 ### 2. **Find Matching Sections and Copy Section Item Values**
-- **Function Description**: To ensure that values from the "From" section are copied to matching items in the "To" section.
-- **Scenario**: The product team decided to update the forumulation for the serum, in this case, they can copy the existing serum to the new one, and update the parts they wish to change.
+- **Scenario**: The product team decided to update the forumulation (section) for the serum, in this case, they can copy the existing serum to the new one, and update the ingredients or parts (section item) they wish to change.
+- **Function Description**: To copy values from items in the "From" section to matching items in the "To" section based on their IDs, ensuring that only relevant changes are made.
 - **Analysis**: This function copies values from items in the "From" section to matching items in the "To" section of a BOM, based on their IDs, and returns a list of the copy operations.
 
 ### 3. **Traverse and Find Matching Nodes**
-- **Function Description**: To identify products or parts whose quantities fall within a specific range. 
-- **Scenario**: The operation team would like to know what is the stock level of the serum, thus they can plan the production.
+- **Scenario**: The operation team would like to know whether the stock level (node: qty) of their products (node) or its parts (node: children) fall in a specific range, thus they can plan the production.
+- **Function Description**: To identify and return products or parts whose quantity (qty) falls within a specified range.
 - **Analysis**: This function recursively traverses a tree-like structure of nodes and collects those whose quantity (`qty`) falls within a specified minimum and maximum range, returning the matching nodes.
 
 ---
