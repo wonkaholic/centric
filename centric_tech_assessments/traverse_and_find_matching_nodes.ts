@@ -30,12 +30,12 @@ const LAMBDA = (params: IParams, ctx: IContext): IResult => {
     const result: INode[] = [];
 
     const traverse = (node: INode) => {
-        // If the node's qty is within the range, add it to the result
         if (node.qty >= min && node.qty <= max) {
             result.push(node);
         }
-
-        // Recursively traverse each child node
+        
+        // We assume the children are not deeply nested.
+        // In case of deeply nested trees (children), we might prefer iterative approach (using a stack) to prevent potential stack overflow
         node.children.forEach(traverse);
     };
 

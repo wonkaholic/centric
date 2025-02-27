@@ -32,18 +32,16 @@ const LAMBDA = (params: IParams, ctx: IContext): IResult => {
     const { container , expiration } = params;
     const { nodes } = ctx
 
-    // Input validation
     if (!expiration || !(expiration instanceof Date)) {
         throw new Error('Invalid expiration date provided');
     }
     
+    // Check (1) if the node has expired (2) if no container is specified, or the container of the node matches the specifed one
     const expiredNodes = nodes.filter(node => {
-        // Check if the node has expired
         const isExpired = node.expiration <= expiration;
         
         if (!isExpired) return false;
         
-        // Check if no container is specified, or if the node's container matches the specified one
         const matchesContainer = !container || 
             (node.container && node.container.id === container);
             
