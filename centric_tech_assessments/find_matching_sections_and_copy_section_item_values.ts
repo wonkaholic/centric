@@ -42,8 +42,7 @@ const LAMBDA = (params: IParams, ctx: IContext): IResult => {
     const { from_section_id, to_section_id } = params;
     const { bom } = ctx;
     
-    // Input validation: Ensuring required parameters are provided
-    // This prevents runtime errors when processing downstream operations
+    // Input validation
     if (!from_section_id || !to_section_id) {
         throw new Error('Both from_section_id and to_section_id must be provided');
     }
@@ -54,8 +53,7 @@ const LAMBDA = (params: IParams, ctx: IContext): IResult => {
     const fromSection = bom.sections.find(section => section.id === from_section_id);
     const toSection = bom.sections.find(section => section.id === to_section_id);
 
-    // Error handling: These checks might seem redundant if section IDs come from a controlled 
-    // dropdown list. 
+    // Error handling
     if (!fromSection) {
         throw new Error(`Source section with ID ${from_section_id} not found`);
     }
@@ -71,7 +69,7 @@ const LAMBDA = (params: IParams, ctx: IContext): IResult => {
             // Find the matching item in the "To" section
             const toItem = toSection.items.find(item => item.id === fromItem.id);
 
-            // If a matching item is found, copy the value
+            // If a matching item is found, copy and add the value
             if (toItem) {
                 operations.push(copy(fromItem.id, toItem.id, fromItem.value));
             }

@@ -32,14 +32,13 @@ const LAMBDA = (params: IParams, ctx: IContext): IResult => {
     const { container , expiration } = params;
     const { nodes } = ctx
 
-    // Input validation: It would not be needed in a controlled environment where expiration is
-    // coming from a date selection field.
+    // Input validation
     if (!expiration || !(expiration instanceof Date)) {
         throw new Error('Invalid expiration date provided');
     }
     
     const expiredNodes = nodes.filter(node => {
-        // First check if the node has expired
+        // Check if the node has expired
         const isExpired = node.expiration <= expiration;
         
         if (!isExpired) return false;

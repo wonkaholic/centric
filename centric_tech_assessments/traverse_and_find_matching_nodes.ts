@@ -29,7 +29,6 @@ const LAMBDA = (params: IParams, ctx: IContext): IResult => {
     
     const result: INode[] = [];
 
-    // Helper function to traverse nodes recursively
     const traverse = (node: INode) => {
         // If the node's qty is within the range, add it to the result
         if (node.qty >= min && node.qty <= max) {
