@@ -29,18 +29,27 @@ interface IResult {
 }
 
 const LAMBDA = (params: IParams, ctx: IContext): IResult => {
-    const expiredNodes: INode[] = [];
+    const { container , expiration } = params;
+    const { nodes } = ctx
 
-    // Iterate through all nodes in the context
-    for (const node of ctx.nodes) {
-        // Check if node is expired based on the expiration date provided
-        if (node.expiration <= params.expiration) {
-            // container?: INodeContainer means that the container property may or may not be present, so if container is specified, check that as well
-            if (!params.container || (node.container && node.container.id === params.container)) {
-                expiredNodes.push(node);
-            }
-        }
+    // Input validation: It would not be needed in a controlled environment where expiration is
+    // coming from a date selection field.
+    if (!expiration || !(expiration instanceof Date)) {
+        throw new Error('Invalid expiration date provided');
     }
+    
+    const expiredNodes = nodes.filter(node => {
+        // First check if the node has expired
+        const isExpired = node.expiration <= expiration;
+        
+        if (!isExpired) return false;
+        
+        // Check if no container is specified, or if the node's container matches the specified one
+        const matchesContainer = !container || 
+            (node.container && node.container.id === container);
+            
+        return matchesContainer;
+    });
 
     return {
         $response: expiredNodes,

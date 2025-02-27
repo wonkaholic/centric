@@ -39,11 +39,30 @@ interface ICopyOperation {
 }
 
 const LAMBDA = (params: IParams, ctx: IContext): IResult => {
+    const { from_section_id, to_section_id } = params;
+    const { bom } = ctx;
+    
+    // Input validation: Ensuring required parameters are provided
+    // This prevents runtime errors when processing downstream operations
+    if (!from_section_id || !to_section_id) {
+        throw new Error('Both from_section_id and to_section_id must be provided');
+    }
+
     const operations: ICopyOperation[] = [];
 
     // Find the "From" and "To" sections from the BOM
-    const fromSection = ctx.bom.sections.find(section => section.id === params.from_section_id);
-    const toSection = ctx.bom.sections.find(section => section.id === params.to_section_id);
+    const fromSection = bom.sections.find(section => section.id === from_section_id);
+    const toSection = bom.sections.find(section => section.id === to_section_id);
+
+    // Error handling: These checks might seem redundant if section IDs come from a controlled 
+    // dropdown list. 
+    if (!fromSection) {
+        throw new Error(`Source section with ID ${from_section_id} not found`);
+    }
+    
+    if (!toSection) {
+        throw new Error(`Target section with ID ${to_section_id} not found`);
+    }
 
     // If both sections exist, proceed with copying values
     if (fromSection && toSection) {
@@ -64,11 +83,9 @@ const LAMBDA = (params: IParams, ctx: IContext): IResult => {
     };
 };
 
-//Please use the provided function in the LAMBDA
-const copy = (from: string, to: string, value: string | number): ICopyOperation => {
-    return {
-        from,
-        to,
-        value
-    };
-};
+// Remove the extra `return` statement, making it more compact and easier to read.
+const copy = (from: string, to: string, value: string | number): ICopyOperation => ({
+    from,
+    to,
+    value
+});

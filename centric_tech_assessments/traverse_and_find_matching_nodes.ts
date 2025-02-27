@@ -24,12 +24,15 @@ interface IResult {
 }
 
 const LAMBDA = (params: IParams, ctx: IContext): IResult => {
+    const { min, max } = params;
+    const { nodes } = ctx;
+    
     const result: INode[] = [];
 
     // Helper function to traverse nodes recursively
     const traverse = (node: INode) => {
         // If the node's qty is within the range, add it to the result
-        if (node.qty >= params.min && node.qty <= params.max) {
+        if (node.qty >= min && node.qty <= max) {
             result.push(node);
         }
 
@@ -38,7 +41,7 @@ const LAMBDA = (params: IParams, ctx: IContext): IResult => {
     };
 
     // Traverse each root node in the context
-    ctx.nodes.forEach(traverse);
+    nodes.forEach(traverse);
 
     return {
         $response: result,
