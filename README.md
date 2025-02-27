@@ -1,7 +1,7 @@
 # Product Lifecycle Management - Technical Assessment
 
-This repository contains solutions for a technical assessment conducted for **Centric Software**, focused on **Product Lifecycle Management** (PLM). The code covers three main functionalities related to managing nodes, sections, and products in a BOM.
-There are comments in each file which is made to demostrate the thought process while doing the assessments.
+- This repository contains solutions for a technical assessment conducted for **Centric Software**, focused on **Product Lifecycle Management** (PLM). The code covers three main functionalities related to managing nodes, sections, and products in a BOM.
+- There are comments in each file which is made to demostrate the thought process while doing the assessments.
 
 ## Table of Contents
 1. [User Stories](#user-stories)
