@@ -35,7 +35,7 @@ const LAMBDA = (params: IParams, ctx: IContext): IResult => {
     for (const node of ctx.nodes) {
         // Check if node is expired based on the expiration date provided
         if (node.expiration <= params.expiration) {
-            // If container is specified, check that as well
+            // container?: INodeContainer means that the container property may or may not be present, so if container is specified, check that as well
             if (!params.container || (node.container && node.container.id === params.container)) {
                 expiredNodes.push(node);
             }
